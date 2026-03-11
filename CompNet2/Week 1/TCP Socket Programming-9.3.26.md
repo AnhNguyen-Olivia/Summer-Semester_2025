@@ -4,12 +4,35 @@
 >- [[TCP Socket Programming-9.3.26#Socket|Socket]]
 >- [[TCP Socket Programming-9.3.26#TCP |TCP ]]
 >- [[TCP Socket Programming-9.3.26#Socket class|Socket class]]
->    - [[TCP Socket Programming-9.3.26#TCP|TCP]]
->        - [[TCP Socket Programming-9.3.26#Socket|Socket]]
->        - [[TCP Socket Programming-9.3.26#ServerSocket (Server-Side)|ServerSocket (Server-Side)]]
+>   - [[TCP Socket Programming-9.3.26#TCP|TCP]]
+>      - [[TCP Socket Programming-9.3.26#Socket|Socket]]
+>      - [[TCP Socket Programming-9.3.26#ServerSocket (Server-Side)|ServerSocket (Server-Side)]]
 >- [[TCP Socket Programming-9.3.26#TCP communication|TCP communication]]
->    - [[TCP Socket Programming-9.3.26#Client Steps|Client Steps]]
->    - [[TCP Socket Programming-9.3.26#Server Steps|Server Steps]]
+>   - [[TCP Socket Programming-9.3.26#Client Steps|Client Steps]]
+>   - [[TCP Socket Programming-9.3.26#Server Steps|Server Steps]]
+>- [[TCP Socket Programming-9.3.26#Examples|Examples]]
+>   - [[TCP Socket Programming-9.3.26#Example 1: String to uppercase (Text Stream)|Example 1: String to uppercase (Text Stream)]]
+>      - [[TCP Socket Programming-9.3.26#TCPClient.java|TCPClient.java]]
+>      - [[TCP Socket Programming-9.3.26#TCPServer.java|TCPServer.java]]
+>   - [[TCP Socket Programming-9.3.26#Rules|Rules]]
+>   - [[TCP Socket Programming-9.3.26#Example 2: Integer Subtraction (Binary Streams)|Example 2: Integer Subtraction (Binary Streams)]]
+>      - [[TCP Socket Programming-9.3.26#TCPClient.java|TCPClient.java]]
+>      - [[TCP Socket Programming-9.3.26#TCPServer.java|TCPServer.java]]
+>   - [[TCP Socket Programming-9.3.26#Input and Output Streams|Input and Output Streams]]
+>   - [[TCP Socket Programming-9.3.26#SSL Socket|SSL Socket]]
+>   - [[TCP Socket Programming-9.3.26#Example 3 "Bad" problems|Example 3 "Bad" problems]]
+>      - [[TCP Socket Programming-9.3.26#Bad TCPClient.java|Bad TCPClient.java]]
+>      - [[TCP Socket Programming-9.3.26#Bad TCPServer.java|Bad TCPServer.java]]
+>      - [[TCP Socket Programming-9.3.26#Problem|Problem]]
+>   - [[TCP Socket Programming-9.3.26#Synchronization between Client and Server|Synchronization between Client and Server]]
+>   - [[TCP Socket Programming-9.3.26#Good Client with Delimiter|Good Client with Delimiter]]
+>      - [[TCP Socket Programming-9.3.26#TCPClient.java|TCPClient.java]]
+>      - [[TCP Socket Programming-9.3.26#TCPServer.java|TCPServer.java]]
+>   - [[TCP Socket Programming-9.3.26#Good Client with Length-prefix (Recommended)|Good Client with Length-prefix (Recommended)]]
+>      - [[TCP Socket Programming-9.3.26#TCPClient.java|TCPClient.java]]
+>      - [[TCP Socket Programming-9.3.26#TCPServer.java|TCPServer.java]]
+>   - [[TCP Socket Programming-9.3.26#Supporting many clients simultaneously|Supporting many clients simultaneously]]
+>- [[TCP Socket Programming-9.3.26#Summary|Summary]]
 # Review
 In Java the OSI model is overkilled, thus we use TCP model
 ![[Pasted image 20260309191125.png]]
@@ -29,7 +52,7 @@ In most cases, a server primary send data while a client primary receives it; bu
 **Socket = Address + Port number**
 In more detail, **a socket is a software interface that allows a program (process) to send and receive data through a network.**
 
-"Let’s consider an analogy to help us understand processes and sockets. A process is analogous to a house and its socket is analogous to its door. When a process wants to send a message to another process on another host, it shoves the message out its door (socket). This sending process assumes that there is a transportation infrastructure on the other side of its door that will transport the message to the door of the destination process. Once the message arrives at the destination host, the message passes through the receiving process’s door (socket), and the receiving process then acts on the message." 
+*"Let’s consider an analogy to help us understand processes and sockets. A process is analogous to a house and its socket is analogous to its door. When a process wants to send a message to another process on another host, it shoves the message out its door (socket). This sending process assumes that there is a transportation infrastructure on the other side of its door that will transport the message to the door of the destination process. Once the message arrives at the destination host, the message passes through the receiving process’s door (socket), and the receiving process then acts on the message."* 
 
 *(page 117- Computer Networking: A Top‑Down Approach by James F. Kurose & Keith W. Ross.).*
 
@@ -301,3 +324,68 @@ No mess boundaries in TCP (byte stream only)
 - Client sends string + int as raw bytes
 - Server doesn't know where strings ends, int begins
 - Relies on `s.shutdownOutput()` (closes connection) => Bad design
+![[Pasted image 20260311144233.png]]
+
+## Synchronization between Client and Server
+Most common student bug: **Message boundaries does not exist in TCP**. TCP is a **byte stream**, not a "messages". Server doesn't know how many bytes Client sends to. **Application must defined their own message framing**. 
+- Delimiter-based: 
+	- Line-delimiter (`readLine()`)
+	- Self-defined
+- Fixed-length records
+- Length-prefix (`writeInt()` of `DataOutputStream`)
+Synchronization of data transferring. 
+*Q: What happens of both are waiting for data?*
+A: Deadlock occurred. Solution: `flush()`
+
+*"For example, suppose you’ve written a 300-byte request to an HTTP 1.1 server that uses*
+*HTTP Keep-Alive. You generally want to wait for a response before sending any more*
+*data. However, if the output stream has a 1,024-byte buffer, the stream may be waiting*
+*for more data to arrive before it sends the data out of its buffer. No more data will be*
+*written onto the stream until the server response arrives, but the response is never going*
+*to arrive because the request hasn’t been sent yet! Figure 2-1 illustrates this catch-22.*
+*The `flush()` method breaks the deadlock by forcing the buffered stream to send its data*
+*even if the buffer isn’t yet full."* 
+
+*(page 29 - Computer Networking: A Top‑Down Approach by James F. Kurose & Keith W. Ross.).*
+
+![[Pasted image 20260311153953.png]]
+*Figure 2-1. Data can get lost if you don’t flush your streams*
+
+## Good Client with Delimiter
+### TCPClient.java
+```java
+try {
+	Scanner sc = new Scanner(System.in);
+	Socket s = new Socket("localhost", 1234);
+	BufferedWriter Network_out = new BufferedWriter(new
+	OutputStreamWriter(s.getOutputStream()));
+	System.out.print("Enter a text: ");
+	String text = sc.nextLine();
+	System.out.print("Enter an int: ");
+	String intLine = sc.nextLine();
+	out.write(textBytes + “\r\n”);
+	out.write(intLine+ “\r\n”);
+	out.flush(); s.close();
+} catch (IOException e){}
+```
+### TCPServer.java
+```java
+will implement soon! (hw)
+```
+
+## Good Client with Length-prefix (Recommended)
+Idea: 
+- **Client**: before sending a string, Client will send the length of this string (4 bytes) and then send the string and number (int). 
+- **Server**: read 4 bytes 1st and know the length of string. Hence, it will read the string easily, and then read the int.
+### TCPClient.java
+```java
+Will impliment soon! (hw)
+```
+### TCPServer.java
+```java
+Will impliment soon! (hw)
+```
+## Supporting many clients simultaneously
+With this structure, server **can not** support many TCP clients simultaneously. **Because** the current structure is sequential, server block until client answer and process that client only. The **result** is one client at a time.  For multi-client support, we use **`Threads`**, one thread per client. *(We will study this later)*
+# Summary
+If we use TCP for transmission, the data is delivered in order and no lost happens. Java hides all complex steps of setting up connection and data transmission between Client and Server. Client /Server program has 4 [[TCP Socket Programming-9.3.26#TCP communication|steps]] (create socket, create streams, implement function, close socket). We need to guarantee the synchronization of Client and Server.

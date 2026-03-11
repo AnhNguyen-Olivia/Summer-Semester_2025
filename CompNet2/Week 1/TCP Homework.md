@@ -295,6 +295,17 @@ public class TCPServer {
 }
 ```
 
+**Output in terminal**
+```terminal
+Please input two integers:
+5
+15
+Data from server: 6
+Data from server: 8
+Data from server: 10
+Data from server: 12
+Data from server: 14
+```
 ## **Assignment 6** 
 Write client and server programs to simulate the RFC862-Echo Protocol by using TCP (RFC862 - Echo Protocol [http://www.faqs.org/rfcs/rfc862.html](http://www.faqs.org/rfcs/rfc862.html))
 
