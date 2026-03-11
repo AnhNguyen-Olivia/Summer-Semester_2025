@@ -91,14 +91,13 @@ public class TCPClient {
 			Network_out.writeInt(data2);
 			
 			int result = Network_in.readInt();
-			System.out.println("Data from sever: " + result);
+			System.out.println("Data from server: " + result);
 			
 			s.close();
 		}catch(Exception e){}
 	}
 }
 ```
-
 ### TCPServer.java
 ```java
 import java.net.*;
@@ -141,6 +140,7 @@ Please input two integers:
 50
 Data from sever: 2450
 ```
+
 ## **Assignment 4** 
 Write a client program connecting to a server program by TCP. Client send two integers to Server and 1 arithmetic operation (addition, subtraction, multiplication, or division) to Server. After receiving the data, Server will implement the arithmetic operation and send result back to Client. Client will print this result to Console.
 ### TCPClient.java
@@ -178,7 +178,6 @@ public class TCPClient {
 	}
 }
 ```
-
 ### TCPServer.java
 ```java
 import java.net.*;
@@ -231,11 +230,73 @@ Data from sever: 2.0
 **Note**: When doing this assignment, I notice you need to change the socket number if you found the server didn't return anything. Add `e.printStackTrace()` to troubleshoot.
 
 ## **Assignment 5** 
-Write a client program connecting to a server program by TCP. Client send 2 integers a, b to Server (assuming a <b). After receiving, Server send the even numbers in range [a, b].
+Write a client program connecting to a server program by TCP. Client send 2 integers a, b to Server (assuming a <b). After receiving, Server send the even numbers in range [a, b]. For example, if Client send 2 and 9 to Server. Server will send one after another each number 2, 4, 6, and 8 to Client (At each time, Server only send 1 even numbers).
+### TCPClient.java
+```java
+import java.net.*;
+import java.io.*;
+import java.util.*;
 
-For example, if Client send 2 and 9 to Server. Server will send one after another each number 2, 4, 6, and 8 to Client (At each time, Server only send 1 even numbers).
+public class TCPClient {
+	public static void main(String [] args){
+		try{
+			Socket s = new Socket("localhost", 1000);
+			
+			DataInputStream Network_in = new DataInputStream(s.getInputStream());
+			DataOutputStream Network_out = new DataOutputStream(s.getOutputStream());
+			
+			Scanner keyboard = new	 Scanner(System.in);
+			System.out.println("Please input two integers:");
+			int data1 = keyboard.nextInt();
+			int data2 = keyboard.nextInt();
+			
+			Network_out.writeInt(data1);
+			Network_out.writeInt(data2);
+			
+			try {
+				while(true){
+					int result = Network_in.readInt();
+					System.out.println("Data from server: " + result);
+				}
+			}catch(EOFException e){}
+			
+			s.close();
+		}catch(Exception e){}
+	}
+}
+```
+### TCPServer.java
+```java
+import java.net.*;
+import java.io.*;
 
-**Assignment 6** Write client and server programs to simulate the RFC862-Echo Protocol by using TCP (RFC862 - Echo Protocol [http://www.faqs.org/rfcs/rfc862.html](http://www.faqs.org/rfcs/rfc862.html))
+public class TCPServer {
+
+	public static void main(String [] args){
+		try{
+			ServerSocket ss = new ServerSocket(1000);
+			Socket con = ss.accept();
+				
+			DataInputStream in = new DataInputStream(con.getInputStream());
+			DataOutputStream out = new DataOutputStream(con.getOutputStream());
+				
+			int num1 = in.readInt();
+			int num2 = in.readInt();
+				
+			for(int i = num1; i <= num2; i++){
+				if(i % 2 == 0){
+					out.writeInt(i);
+					out.flush();
+				}
+			}	
+			con.close();
+		}catch(Exception e){e.printStackTrace();}
+	}
+}
+```
+
+## **Assignment 6** 
+Write client and server programs to simulate the RFC862-Echo Protocol by using TCP (RFC862 - Echo Protocol [http://www.faqs.org/rfcs/rfc862.html](http://www.faqs.org/rfcs/rfc862.html))
 
 **Assignment 7** Write client and server programs which allow a user at client side can chat with a user at server side one after another. In other words, firstly user at client side will input a string and send the string to server, server will display it on screen. Secondly, server will allow user input a string and send back to client. The process is repeated until the client or server send a string “bye”.
 
