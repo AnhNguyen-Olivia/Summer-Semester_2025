@@ -181,8 +181,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 563.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -199,6 +198,7 @@
   },
   "active": "57c8e5fcb6324e16",
   "lastOpenFiles": [
+    "README.md",
     "CompNet2/Week 1/TCP Socket Programming-9.3.26.md",
     "CompNet2/Week 1/TCP Homework.md",
     "CompNet2/Image/Week 1/Pasted image 20260310180330.png",
