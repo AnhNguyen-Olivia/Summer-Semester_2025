@@ -1,0 +1,1 @@
+This is where the images that might appeared in the week note
