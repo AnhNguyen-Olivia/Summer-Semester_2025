@@ -88,7 +88,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "ccdb9a6ab6bab5a8",
@@ -190,7 +191,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 402.5
+    "width": 571.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -207,12 +208,23 @@
   },
   "active": "57c8e5fcb6324e16",
   "lastOpenFiles": [
+    "Template/TOC.md",
+    "README.md",
+    "IT_Security/IT Security (VGU Summer Semester 25-26).md",
+    "IT_Security/Other Information/Subnet.md",
+    "IT_Security/Other Information/Other Information.md",
+    "CompNet2/Other infomation/Other Information.md",
+    "IT_Security/Chapter 1 - Basics/Chapter 1 - Basics (12.03.2025).md",
+    "IT_Security/Other Information",
+    "IT_Security/Image/IT Security Image.md",
+    "CompNet2/Image/Image.md",
+    "IT_Security/Image/Chapter 1",
+    "IT_Security/Image",
+    "IT_Security/Chapter 1 - Basics/Exercise 1.md",
+    "IT_Security/Image/Chapter 1/Pasted image 20260312113744.png",
     "IT_Security/Chapter 2 - Cryptology/Chapter 2 - Cryptology.md",
     "IT_Security/Chapter 2 - Cryptology",
-    "IT_Security/Chapter 1 - Basics/Chapter 1 - Basics (12.03.2025).md",
-    "README.md",
     "RTOS/RTOS (VGU Summer Semester 25-26).md",
-    "IT_Security/IT Security (VGU Summer Semester 25-26).md",
     "Chapter 1 - Basics (12.03.2025)].md",
     "CompNet2/Week 1/TCP Homework (09.03.26).md",
     "CompNet2/Week 1/TCP Socket Programming (09.03.26).md",
@@ -220,18 +232,15 @@
     "IT_Security/Chapter 1 - Basics",
     "RTOS",
     "IT_Security",
-    "Template/TOC.md",
     "CompNet2/Image/Week 1/Pasted image 20260311153953.png",
     "Pasted image 20260311151629.png",
     "CompNet2/Image/Week 1/Pasted image 20260311144233.png",
     "CompNet2/Image/Week 1/Pasted image 20260310180330.png",
     "CompNet2/Image/Week 1/Pasted image 20260310171528.png",
     "Untitled.md",
-    "CompNet2/Image/Image.md",
     "CompNet2/Image/Week 1/Pasted image 20260309191125.png",
     "Template",
     "CompNet2/Image/Week 1/Pasted image 20260310150058.png",
-    "CompNet2/Other infomation/Other Information.md",
     "CompNet2/Other infomation/Resolves hostname to IP.md",
     "CompNet2/Other infomation/InetAddress.md",
     "VGU_Summer_26-26/Summer.md",
@@ -240,10 +249,6 @@
     "CompNet2/Other infomation",
     "Welcome.md",
     "CompNet2/Image/Week 1/Pasted image 20260309195246.png",
-    "CompNet2/Image/Week 1/Pasted image 20260309205927.png",
-    "CompNet2/Image/Week 1",
-    "CompNet2/Week 1",
-    "CompNet2/Image",
     "Summer_SemVgu_25-26/CompNet2/Week 1/TCP Socket Programming-9.3.26.md",
     "Summer_SemVgu_25-26/CompNet2/Week 1/TCP Homework.md",
     "Summer_SemVgu_25-26/CompNet2/Computer Network 2 (SummerSem 25-26).md"

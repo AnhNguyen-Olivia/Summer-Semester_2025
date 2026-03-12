@@ -3,7 +3,8 @@ Lecturer:
 2. Dr. Tran Hong Ngoc  Email: ngoc.th@vgu.edu.vn
 # Course Syllabus
 ## Chapter 1 - Basics 
-- [[Chapter 1 - Basics (12.03.2025)|Note]]
+- [[Chapter 1 - Basics (12.03.2025)]]
+- [[Exercise 1]]
 ## Chapter 2 - Cryptology 
 - [[Chapter 2 - Cryptology |Note]]
 ## Chapter 3 - Malware
@@ -19,6 +20,8 @@ Lecturer:
 # Reference Book
 - TBA
 # Miscellaneous
-- TBA
+- [[IT Security Image|Image]]
+- [[IT_Security/Other Information/Other Information|Other Information]]
 # NOTE: 
-(As 12.03.26 in) Câu 9 trong exam là dùng subnet, cho IP address tạo subnet and stuff
+(As of 12.03.26) Question 9 in the exam involves [[Subnet|subnetting]]. You’re given an IP address and asked to create subnets and related configurations. 
+
