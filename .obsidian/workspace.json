@@ -11,14 +11,12 @@
             "id": "57c8e5fcb6324e16",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "Distributed_System/Lecture 1/Lecture 1 - 13.03.2026.md",
-                "mode": "source",
-                "source": false
+                "file": "Distributed_System/Image/Lecture 1/Pasted image 20260313142851.png"
               },
-              "icon": "lucide-file",
-              "title": "Lecture 1 - 13.03.2026"
+              "icon": "lucide-image",
+              "title": "Pasted image 20260313142851"
             }
           }
         ]
@@ -78,8 +76,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "ccdb9a6ab6bab5a8",
@@ -181,7 +178,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 267.5
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -196,21 +193,20 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "bda1832330a4acba",
+  "active": "57c8e5fcb6324e16",
   "lastOpenFiles": [
-    "Pasted image 20260313143846.png",
-    "Pasted image 20260313143806.png",
-    "Pasted image 20260313143721.png",
-    "Pasted image 20260313143603.png",
-    "Pasted image 20260313143527.png",
-    "Pasted image 20260313143444.png",
-    "Pasted image 20260313143418.png",
-    "Pasted image 20260313143349.png",
-    "Pasted image 20260313143316.png",
-    "Pasted image 20260313143250.png",
-    "Pasted image 20260313142851.png",
-    "Distributed_System/Distributed Systems.md",
     "Distributed_System/Lecture 1/Lecture 1 - 13.03.2026.md",
+    "Distributed_System/Image/Lecture 1/Pasted image 20260313143846.png",
+    "Distributed_System/Image/Lecture 1/Pasted image 20260313143806.png",
+    "Distributed_System/Image/Lecture 1/Pasted image 20260313143721.png",
+    "Distributed_System/Image/Lecture 1/Pasted image 20260313143603.png",
+    "Distributed_System/Image/Lecture 1/Pasted image 20260313143527.png",
+    "Distributed_System/Image/Lecture 1/Pasted image 20260313143444.png",
+    "Distributed_System/Image/Lecture 1/Pasted image 20260313143418.png",
+    "Distributed_System/Image/Lecture 1/Pasted image 20260313143349.png",
+    "Distributed_System/Image/Lecture 1/Pasted image 20260313143316.png",
+    "Pasted image 20260313143250.png",
+    "Distributed_System/Distributed Systems.md",
     "Distributed_System/Image/Lecture 1",
     "Distributed_System/Image",
     "Distributed_System/Lecture 1/Untitled.md",
